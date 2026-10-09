@@ -94,3 +94,48 @@ echo $multiplicationResult;
 
 
 
+
+<h2> Задача 4 </h2>
+
+
+<?php
+
+
+$days = 7;
+$distance = 10;
+$sum = 0;
+
+
+echo "Дни = " , $days , '<br>';
+
+echo "Дистанция = " , $distance, '<br>';
+
+
+for ($i = 1; $i <= $days; $i++) {
+    $sum = $sum + $distance;
+    $distance = $distance * 1.1;
+}
+
+echo "Суммарно = " ,$sum;
+
+?>
+
+
+
+
+
+<h2> Задача 5 </h2>
+
+
+<?php
+
+for ($rabbits = 0; $rabbits <= 16; $rabbits++) {
+    $geese = (64 - $rabbits * 4) / 2;
+
+    if ($geese >= 0) {
+        echo "Кроликов: " . $rabbits . ", гусей: " . $geese . "<br>";
+    }
+}
+
+?>
+
