@@ -7,7 +7,7 @@
 
 <form action = " ">
 
-<p>Введите число: </p>
+<p>Введите цифру: </p>
 
 <input  name = "number">
 
@@ -260,12 +260,13 @@ echo "Нет данных";
 ?>
 
 
-<h2>Задача 4</h2>
 
+
+<h2>Задача 4</h2>
 
 <form action = " ">
 
-<p>Введите число: </p>
+<p>Введите сколько лет : </p>
 
 <input  name = "number">
 
@@ -277,21 +278,41 @@ echo "Нет данных";
 
 
 
+
+
 <?php
 
 
+if(isset ($_GET ['number'])) {
 
+
+$d = $_GET ['number'];
+
+
+if ($d >= 11 && $d <= 14) {
+    echo "Мне $d лет";
+} else {
+
+    switch ($d % 10) {
+
+        case 1:
+            echo "Мне $d год";
+            break;
+
+        case 2:
+        case 3:
+        case 4:
+            echo "Мне $d года";
+            break;
+
+        default:
+            echo "Мне $d лет";
+    }
+}
+
+} else {
+echo "Нет данных";
+
+}
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
