@@ -164,3 +164,85 @@ if (isset($_GET['word'])) {
 ?>
 
 
+<h2>Задача 5</h2>
+
+<?php
+
+$str = 'hello';
+$letters = [];
+
+for ($i = 0; $i < strlen($str); $i++) {
+
+    $letter = $str[$i];
+
+    if (isset($letters[$letter])) {
+        $letters[$letter]++;
+    } else {
+        $letters[$letter] = 1;
+    }
+}
+
+foreach ($letters as $key => $value) {
+    echo "$key - $value <br>";
+}
+
+?>
+
+
+
+
+<h2>Задача 6</h2>
+
+<?php
+
+$words = [
+    'Привет' => 'hello',
+    'До свидания' => 'goodbye',
+    'Вверх' => 'up',
+    'Вниз' => 'down',
+    'Влево' => 'left',
+    'Вправо' => 'right',
+    'ДА' => 'yes',
+    'Нет' => 'no',
+    'Правда' => 'True',
+    'Ложь' => 'False',
+    'Ничего' => 'Nothing'
+];
+
+$newWords = [];
+
+foreach ($words as $key => $value) {
+    $newWords[$value] = $key;
+}
+
+foreach ($newWords as $key => $value) {
+    echo "$key - $value <br>";
+}
+
+?>
+
+
+<h2>Задача 7</h2>
+
+<?php
+
+$words = ['кот', 'дом', 'лес', 'слон', 'мышь'];
+
+$newWords = [];
+
+foreach ($words as $word) {
+
+    $len = strlen($word);
+
+    if (isset($newWords[$len])) {
+        $newWords[$len] = $newWords[$len] . ' ' . $word;
+    } else {
+        $newWords[$len] = $word;
+    }
+}
+
+foreach ($newWords as $key => $value) {
+    echo "$key - $value <br>";
+}
+
+?>

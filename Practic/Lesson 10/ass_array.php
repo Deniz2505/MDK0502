@@ -81,3 +81,35 @@ $len = strlen ($str);
 echo "Длина строки: $str - $len символов"
 
 ?>
+
+
+
+<h2>Задача 6</h2>
+
+<?php
+
+$words = [
+    'Привет' => 'hello',
+    'До свидания' => 'goodbye',
+    'Вверх' => 'up',
+    'Вниз' => 'down',
+    'Влево' => 'left',
+    'Вправо' => 'right',
+    'ДА' => 'yes',
+    'Нет' => 'no',
+    'Правда' => 'True',
+    'Ложь' => 'False',
+    'Ничего' => 'Nothing'
+];
+
+$newWords = [];
+
+foreach ($words as $key => $value) {
+    $newWords[$value] = $key;
+}
+
+foreach ($newWords as $key => $value) {
+    echo "$key - $value <br>";
+}
+
+?>
