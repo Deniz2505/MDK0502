@@ -1,7 +1,7 @@
 
-<h1> Функции </h1>
 
-<h2> Задание 1</h2>
+
+<h2> Задание 1 Вычисления длины окружности</h2>
 
 <?php
 
@@ -11,34 +11,24 @@ function circleLength ($r)
 }
 $radius = 5;
 
-echo 'Радиус = ' , $radius;
+echo 'Исходные данные радиуса = ' . $radius;
 
 echo '<p> Длина окружности - ' . circleLength (5) . '</p>';
 
 ?>
 
 
-<h2> Задание 2. Площадь треугольника</h2>
 
-<form method="post">
-    Сторона A: <input type="number" step="any" name="a" required>
-    <br><br>
-    Сторона B: <input type="number" step="any" name="b" required>
-    <br><br>
-    Сторона C: <input type="number" step="any" name="c" required>
-    <br><br>
-    <button type="submit" name="triangle">Вычислить</button>
-</form>
+<h2> Задание 2. Площадь треугольника</h2>
 
 <?php
 
-function triangleArea ($a, $b, $c)
-{
-    if ($a <= 0 || $b <= 0 || $c <= 0)
-    {
-        return 0;
-    }
+$a = 5;
+$b = 6;
+$c = 7;
 
+function area ($a, $b, $c)
+{
     if ($a + $b <= $c || $a + $c <= $b || $b + $c <= $a)
     {
         return 0;
@@ -49,14 +39,8 @@ function triangleArea ($a, $b, $c)
     return sqrt($p * ($p - $a) * ($p - $b) * ($p - $c));
 }
 
-if (isset($_POST['triangle']))
-{
-    $a = $_POST['a'];
-    $b = $_POST['b'];
-    $c = $_POST['c'];
-
-    echo '<p> Площадь треугольника - ' . triangleArea ($a, $b, $c) . '</p>';
-}
+echo '<p> Исходные данные: a = ' . $a . ', b = ' . $b . ', c = ' . $c . '</p>';
+echo '<p> Результат: ' . area ($a, $b, $c) . '</p>';
 
 ?>
 
@@ -64,7 +48,10 @@ if (isset($_POST['triangle']))
 
 <?php
 
-function largestDivisor ($number)
+
+$number = 12;
+
+function divisor ($number)
 {
     for ($i = $number - 1; $i >= 1; $i--)
     {
@@ -73,11 +60,10 @@ function largestDivisor ($number)
             return $i;
         }
     }
-
-    return 0;
 }
 
-echo '<p> Наибольший делитель - ' . largestDivisor (12) . '</p>';
+echo '<p> Исходные данные: number = ' . $number . '</p>';
+echo '<p> Результат: ' . divisor ($number) . '</p>';
 
 ?>
 
@@ -85,24 +71,29 @@ echo '<p> Наибольший делитель - ' . largestDivisor (12) . '</p
 
 <?php
 
-function allDivisors ($number)
+
+$number = 12;
+
+function divisors ($number)
 {
-    $divisors = [];
+    $result = [];
 
     for ($i = 1; $i <= $number; $i++)
     {
         if ($number % $i == 0)
         {
-            $divisors[] = $i;
+            $result[] = $i;
         }
     }
 
-    return $divisors;
+    return $result;
 }
 
-$numbers = allDivisors (12);
+echo '<p> Исходные данные: number = ' . $number . '</p>';
 
-echo '<p> Все делители: </p>';
+$numbers = divisors ($number);
+
+echo '<p> Результат: </p>';
 
 foreach ($numbers as $number)
 {
@@ -111,25 +102,27 @@ foreach ($numbers as $number)
 
 ?>
 
-<h2> Задание 5. Сумма квадратов массива</h2>
+<h2> Задание 5. Сумма квадратов</h2>
 
 <?php
 
-function sumSquares ($numbers)
-{
-    $sum = 0;
-
-    foreach ($numbers as $number)
-    {
-        $sum = $sum + $number * $number;
-    }
-
-    return $sum;
-}
 
 $numbers = [2, 3, 4];
 
-echo '<p> Сумма квадратов - ' . sumSquares ($numbers) . '</p>';
+function sum ($numbers)
+{
+    $result = 0;
+
+    foreach ($numbers as $number)
+    {
+        $result = $result + $number * $number;
+    }
+
+    return $result;
+}
+
+echo '<p> Исходные данные: numbers = [2, 3, 4]</p>';
+echo '<p> Результат: ' . sum ($numbers) . '</p>';
 
 ?>
 
@@ -137,7 +130,10 @@ echo '<p> Сумма квадратов - ' . sumSquares ($numbers) . '</p>';
 
 <?php
 
-function convertToString ($array)
+// Исходные данные
+$words = ['Привет', 'Пока', 'PHP', [1, 2, 3], 'HTML'];
+
+function convert ($array)
 {
     $result = '';
 
@@ -145,40 +141,45 @@ function convertToString ($array)
     {
         if (is_array($item))
         {
-            $result = $result . 'array, ';
+            $result = $result . 'array ';
         }
         else
         {
-            $result = $result . $item . ', ';
+            $result = $result . $item . ' ';
         }
     }
 
     return $result;
 }
 
-$words = ['Привет', 'Пока', 'PHP', [1, 2, 3], 'HTML'];
-
-echo convertToString ($words);
+echo '<p> Исходные данные: words = [Привет, Пока, PHP, array, HTML]</p>';
+echo '<p> Результат: ' . convert ($words) . '</p>';
 
 ?>
 
-<h2> Задание 7. Переменное количество параметров</h2>
+<h2> Задание 7. Длина строк</h2>
 
 <?php
 
-function totalLength (...$strings)
+// Исходные данные
+$text1 = 'Привет';
+$text2 = 'Пока';
+$text3 = 'PHP';
+
+function length (...$strings)
 {
-    $length = 0;
+    $result = 0;
 
     foreach ($strings as $string)
     {
-        $length = $length + strlen($string);
+        $result = $result + strlen($string);
     }
 
-    return $length;
+    return $result;
 }
 
-echo '<p> Общая длина строк - ' . totalLength ('Привет', 'Пока', 'PHP') . '</p>';
+echo '<p> Исходные данные: text1 = Привет, text2 = Пока, text3 = PHP</p>';
+echo '<p> Результат: ' . length ($text1, $text2, $text3) . '</p>';
 
 ?>
 
@@ -186,7 +187,10 @@ echo '<p> Общая длина строк - ' . totalLength ('Привет', '�
 
 <?php
 
-function convertToStringRecursive ($array)
+// Исходные данные
+$words = ['Привет', 'PHP', ['HTML', 'CSS'], 'Пока'];
+
+function recursive ($array)
 {
     $result = '';
 
@@ -194,19 +198,18 @@ function convertToStringRecursive ($array)
     {
         if (is_array($item))
         {
-            $result = $result . convertToStringRecursive ($item);
+            $result = $result . recursive ($item);
         }
         else
         {
-            $result = $result . $item . ', ';
+            $result = $result . $item . ' ';
         }
     }
 
     return $result;
 }
 
-$words = ['Привет', 'PHP', ['HTML', 'CSS'], 'Пока'];
-
-echo convertToStringRecursive ($words);
+echo '<p> Исходные данные: words = [Привет, PHP, [HTML, CSS], Пока]</p>';
+echo '<p> Результат: ' . recursive ($words) . '</p>';
 
 ?>
